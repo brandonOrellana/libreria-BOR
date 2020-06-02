@@ -1,0 +1,8 @@
+[user]
+	name = Brandon Orellana Rojas
+	email = brandon.rojas.orellana@gmail.com
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+	interactive = auto
