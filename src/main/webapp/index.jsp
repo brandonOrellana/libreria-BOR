@@ -10,22 +10,10 @@
     <style type="text/css">
     font-weigth:bold
     </style>
-    <script type="text/javascript">
-        function validacion(){
-            if(document.forms[0].isbn.value == "")
-                alert("datos no validos");
-            else
-                documento.forms[0].submit();
-        }
-    </script>
+    
     <body>
         <h1>Formulario Libro</h1>
-        <form>
-            ISNB: <input type="text" name="isbn"><br>
-            Titulo: <input type="text" name="titulo"><br>
-            Categoria: <input type="text" name="titulo"<br>
-            <input type="button" value="Insertar" onclick="validacion()">
-        </form>
+        <h2><a href="FormularioInsertarLibro.jsp">Insertar Libro</a></h2>
         
     </body>
 </html>
