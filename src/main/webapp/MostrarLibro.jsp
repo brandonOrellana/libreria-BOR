@@ -19,19 +19,23 @@ pageEncoding="UTF-8"%>
 <title>Lista de Libros</title>
 </head>
 <body>
-    <select name="categoria">
-        <option value="seleccionar">seleccionar</option>
-        <%
+    <form name="filtroCategoria">
+        <select name="categoria">
+                <option value="seleccionar">seleccionar</option>
+                <%
+
+                        List<String> listaDeCategorias = null;
+                        LibroRepository libroRepository=new LibroRepository();
+                        listaDeCategorias = libroRepository.buscarTodasLasCategorias();
+
+                        for(String categoria:listaDeCategorias) { %>
+                            <option value="<%=categoria%>"><%=categoria%></option>
+                        <% } %>
+            </select><br>
+            <input type="submit" value="filtrar">
+    </form>
             
-                List<String> listaDeCategorias = null;
-                LibroRepository libroRepository=new LibroRepository();
-                listaDeCategorias = libroRepository.buscarTodasLasCategorias();
-                
-                for(String categoria:listaDeCategorias) { %>
-                    <option value="<%=categoria%>"><%=categoria%></option>
-                <% } %>
-    </select><br>
-   
+
                 <%
                 List<LibroRepository> listaDeLibros=null;
                 //LibroRepository libroRepository2=new LibroRepository();
