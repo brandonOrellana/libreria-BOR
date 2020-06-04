@@ -30,14 +30,17 @@ pageEncoding="UTF-8"%>
                 for(String categoria:listaDeCategorias) { %>
                     <option value="<%=categoria%>"><%=categoria%></option>
                 <% } %>
-    </select>
+    </select><br>
    
                 <%
                 List<LibroRepository> listaDeLibros=null;
                 LibroRepository libroRepository2=new LibroRepository();
                 listaDeLibros= libroRepository2.buscarTodos();
                 for(LibroRepository libro:listaDeLibros){ %>
-                <%=libro.getIsbn()%><%=libro.getTitulo()%><%=libro.getCategoria()%>
+                <%=libro.getIsbn()%>
+                <%=libro.getTitulo()%>
+                <%=libro.getCategoria()%>
+                <a href="BorrarLibro.jsp?isbn=<%=libro.getIsbn()%>">Borrar</a>
                 <br/>
 <% }
 %>

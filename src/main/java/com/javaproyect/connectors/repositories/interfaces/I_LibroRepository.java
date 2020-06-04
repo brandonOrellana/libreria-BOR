@@ -18,5 +18,6 @@ public interface I_LibroRepository {
      List<String> buscarTodasLasCategorias();
      void insertar();
      List<LibroRepository> buscarTodos();
+     void borrar();
     
 }

@@ -79,4 +79,9 @@ public class LibroRepository implements I_LibroRepository{
         return listaDeLibros;
     }
     
+    public void borrar(){
+        String consultaSQL = "delete from Libros where isbn='"+ this.isbn+"'";
+        DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
+        helper.modificarRgistro(consultaSQL);
+    }
 }
