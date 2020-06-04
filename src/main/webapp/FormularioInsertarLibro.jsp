@@ -4,7 +4,9 @@
     Author     : Brandon
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="com.javaproyect.connectors.repositories.jdbc.LibroRepository"%>
 <!DOCTYPE html
 PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "DTD/xhtml1-strict.dtd">
@@ -21,14 +23,31 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     <legend>Formulario alta libro</legend>
     <form action="InsertarLibro.jsp" onsubmit="return validacion();">
             <fieldset>
-                <p><label for="isbn">ISNB:</label>
-                    <input id="isbn" type="text" name="isbn"></p>
+                <p>
+                    <label for="isbn">ISNB:</label>
+                    <input id="isbn" type="text" name="isbn">
+                </p>
                     
-                <p><label for="titulo">Titulo:</label>
-                    <input id="titulo" type="text" name="titulo"></p>
+                <p>
+                    <label for="titulo">Titulo:</label>
+                    <input id="titulo" type="text" name="titulo">
+                </p>
                     
-                <p><label for="categoria">Categoria</label>
-                    <input id="categoria" type="text" name="categoria"></p>
+                <p>
+                    <label for="categoria">Categoria</label>
+                    
+                    <select name ="categoria">
+                        <%
+                            
+                          List<String> listaDeCategorias=null;
+                          LibroRepository libro = new LibroRepository();
+                          listaDeCategorias = libro.buscarTodasLasCategorias();
+                          for(String categoria:listaDeCategorias){%>
+                          <option value="<%=categoria%>"><%=categoria%></option>
+                          <%}%>
+                    </select>
+                </p>
+                    
                 <input type="submit" value="Insertar">
             </fieldset>
         </form>

@@ -34,13 +34,20 @@ pageEncoding="UTF-8"%>
    
                 <%
                 List<LibroRepository> listaDeLibros=null;
-                LibroRepository libroRepository2=new LibroRepository();
-                listaDeLibros= libroRepository2.buscarTodos();
+                //LibroRepository libroRepository2=new LibroRepository();
+                //listaDeLibros= libroRepository.buscarTodos();
+                
+                    if(request.getParameter("categoria")==null || request.getParameter("categoria").equals("seleccionar")){
+                        listaDeLibros=libroRepository.buscarTodos();
+                    }else{
+                        listaDeLibros=libroRepository.buscarPorCategoria(request.getParameter("categoria"));
+                    }
                 for(LibroRepository libro:listaDeLibros){ %>
-                <%=libro.getIsbn()%>
-                <%=libro.getTitulo()%>
-                <%=libro.getCategoria()%>
-                <a href="BorrarLibro.jsp?isbn=<%=libro.getIsbn()%>">Borrar</a>
+                    <%=libro.getIsbn()%>
+                    <%=libro.getTitulo()%>
+                    <%=libro.getCategoria()%>
+                    <a href="BorrarLibro.jsp?isbn=<%=libro.getIsbn()%>">Borrar</a>
+                    <a href="FormularioEditarLibro.jsp?isbn=<%=libro.getIsbn()%>">Editar</a>
                 <br/>
 <% }
 %>

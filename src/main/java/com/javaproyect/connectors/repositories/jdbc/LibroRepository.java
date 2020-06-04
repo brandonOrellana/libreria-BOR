@@ -84,4 +84,24 @@ public class LibroRepository implements I_LibroRepository{
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
         helper.modificarRgistro(consultaSQL);
     }
+    
+    public LibroRepository buscarPorClave(String isbn){
+        String consultaSQL = "select isbn,titulo,categoria from Libros where isbn='"+ isbn+"'";
+        DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
+        List<LibroRepository> listaDeLibros = helper.seleccionarRegistros(consultaSQL, LibroRepository.class);
+        return listaDeLibros.get(0);
+    }
+    
+    public void salvar(){
+        String consultaSQL = "update  Libros  set titulo='" + this.titulo+ "', categoria='" + categoria + "' where isbn='" + isbn + "'";
+        DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
+        helper.modificarRgistro(consultaSQL);
+    }
+    
+    public List<LibroRepository> buscarPorCategoria(String categoria){
+        String consultaSQL = "select isbn,titulo,categoria from Libros where categoria='"+ categoria+"'";
+        DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
+        List<LibroRepository> listaDeLibros = helper.seleccionarRegistros(consultaSQL, LibroRepository.class);
+        return listaDeLibros;
+    }
 }
