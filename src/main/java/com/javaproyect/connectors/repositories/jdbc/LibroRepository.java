@@ -5,6 +5,7 @@
  */
 package com.javaproyect.connectors.repositories.jdbc;
 
+import com.javaproyect.connectors.DataBaseException;
 import com.javaproyect.connectors.DataBaseHelper;
 import com.javaproyect.connectors.repositories.interfaces.I_LibroRepository;
 import java.sql.ResultSet;
@@ -64,7 +65,7 @@ public class LibroRepository implements I_LibroRepository{
        }
 
     @Override
-    public void  insertar() {
+    public void  insertar(){
         String consultaSQL = "insert into Libros(isbn,titulo,categoria) values";
         consultaSQL += "('" + this.isbn + "','" + this.titulo + "','" + this.categoria + "')";
         DataBaseHelper helper = new DataBaseHelper();
@@ -79,7 +80,7 @@ public class LibroRepository implements I_LibroRepository{
         return listaDeLibros;
     }
     
-    public void borrar(){
+    public void borrar() {
         String consultaSQL = "delete from Libros where isbn='"+ this.isbn+"'";
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
         helper.modificarRgistro(consultaSQL);

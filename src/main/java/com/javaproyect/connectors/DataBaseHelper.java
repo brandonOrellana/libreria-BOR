@@ -33,10 +33,12 @@ public class DataBaseHelper<T> {
             conexion = DriverManager.getConnection(URL, USUARIO, CLAVE);
             sentencia = conexion.createStatement();
             filasAfectadas = sentencia.executeUpdate(consultaSQL);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Error driver"+e.getMessage());
+        }catch(ClassNotFoundException e){
+            System.out.println("Classe no encontrada"+e.getMessage());
+            throw new DataBaseException("Clase no encontrada");
         }catch(SQLException e){
             System.out.println("Error de SQL"+e.getMessage());
+            throw new DataBaseException("Error de SQL",e);
         }finally{
             if(sentencia != null){
                 try {sentencia.close();} catch (SQLException e) {}

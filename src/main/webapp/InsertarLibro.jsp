@@ -4,10 +4,12 @@
     Author     : Brandon
 --%>
 
+<%@page import="com.javaproyect.connectors.DataBaseException"%>
 <%@page import="com.javaproyect.connectors.repositories.jdbc.LibroRepository"%>
 <%@page language="java" contentType ="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import="com.javaproyect.connectors.DataBaseHelper"%>
+<%@ page import="com.javaproyect.connectors.DataBaseException"%>
          
 <% 
     String isbn = request.getParameter("isbn");
@@ -16,6 +18,7 @@
     LibroRepository libro = new LibroRepository(isbn,titulo,categoria);
     libro.insertar();
     response.sendRedirect("MostrarLibro.jsp");
+  
 %>
 
 

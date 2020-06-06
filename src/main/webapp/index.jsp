@@ -15,5 +15,22 @@
         <h1>Formulario Libro</h1>
         <h2><a href="FormularioInsertarLibro.jsp">Insertar Libro</a></h2>
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </body>
 </html>

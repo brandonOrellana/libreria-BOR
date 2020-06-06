@@ -5,8 +5,10 @@
  */
 package com.javaproyect.connectors.repositories.interfaces;
 
+import com.javaproyect.connectors.DataBaseException;
 import com.javaproyect.connectors.repositories.jdbc.LibroRepository;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,5 +21,5 @@ public interface I_LibroRepository {
      void insertar();
      List<LibroRepository> buscarTodos();
      void borrar();
-    
+     void salvar();
 }
