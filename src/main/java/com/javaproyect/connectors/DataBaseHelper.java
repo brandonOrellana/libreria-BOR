@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -22,6 +24,8 @@ public class DataBaseHelper<T> {
     private static final String URL = "jdbc:mysql://localhost:3306/arquitecturajava?serverTimezone=UTC";
     private static final String USUARIO = "root";
     private static final String CLAVE = "";
+    
+    private Logger logger = LogManager.getLogger(DataBaseHelper.class);
     
     public int modificarRgistro(String consultaSQL){
         Connection conexion = null;
@@ -34,10 +38,10 @@ public class DataBaseHelper<T> {
             sentencia = conexion.createStatement();
             filasAfectadas = sentencia.executeUpdate(consultaSQL);
         }catch(ClassNotFoundException e){
-            System.out.println("Classe no encontrada"+e.getMessage());
-            throw new DataBaseException("Clase no encontrada");
+            logger.error("Error de acceso al drive"+e.getMessage());
+            throw new DataBaseException("Clase no encontrada",e);
         }catch(SQLException e){
-            System.out.println("Error de SQL"+e.getMessage());
+            logger.error("Error de sql"+e.getMessage());
             throw new DataBaseException("Error de SQL",e);
         }finally{
             if(sentencia != null){
