@@ -25,27 +25,25 @@ pageEncoding="UTF-8"%>
                 <%
 
                         List<String> listaDeCategorias = null;
-                        LibroRepository libroRepository=new LibroRepository();
-                        listaDeCategorias = libroRepository.buscarTodasLasCategorias();
+                        listaDeCategorias = (List<String>) request.getAttribute("listaDeCategorias");
 
-                        for(String categoria:listaDeCategorias) { %>
-                            <option value="<%=categoria%>"><%=categoria%></option>
-                        <% } %>
+                        for(String categoria:listaDeCategorias) { 
+                            if(categoria.equals(request.getParameter("categoria"))){
+                             %>
+                                <option value="<%=categoria%>"selected><%=categoria%></option>
+                             <%}else{%>
+                                    <option value="<%=categoria%>"><%=categoria%></option>
+                                <%}}%>
             </select><br>
             <input type="submit" value="filtrar">
     </form>
             
 
                 <%
-                List<LibroRepository> listaDeLibros=null;
+                //List<LibroRepository> listaDeLibros=null;
                 //LibroRepository libroRepository2=new LibroRepository();
                 //listaDeLibros= libroRepository.buscarTodos();
-                
-                    if(request.getParameter("categoria")==null || request.getParameter("categoria").equals("seleccionar")){
-                        listaDeLibros=libroRepository.buscarTodos();
-                    }else{
-                        listaDeLibros=libroRepository.buscarPorCategoria(request.getParameter("categoria"));
-                    }
+                List<LibroRepository> listaDeLibros = (List<LibroRepository>) request.getAttribute("listaDeLibros");
                 for(LibroRepository libro:listaDeLibros){ %>
                     <%=libro.getIsbn()%>
                     <%=libro.getTitulo()%>
