@@ -121,7 +121,7 @@
                                 <h5 class="card-title">Warning card title</h5>
                                     <p class="card-text">
                                         Some quick example text to build on the card title and make up the bulk of the card's content.
-                                        <a href="FormularioInsertarLibro.jsp">Insertar Libro</a>
+                                        <a href="FormularioInsertarLibro.do">Insertar Libro</a>
                                     </p>
                                 </div>
                             </div>

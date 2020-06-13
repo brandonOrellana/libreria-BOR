@@ -9,8 +9,9 @@
 <%@ page import="com.javaproyect.connectors.repositories.jdbc.LibroRepository"%>
 
 <% 
-    LibroRepository libroHelper = new LibroRepository();
-    LibroRepository libro = libroHelper.buscarPorClave(request.getParameter("isbn"));
+    //LibroRepository libroHelper = new LibroRepository();
+    //LibroRepository libro = libroHelper.buscarPorClave(request.getParameter("isbn"));
+    LibroRepository libro =(LibroRepository) request.getAttribute("libro");
 %>
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,7 @@
     <body>
         <h1>Edicion de Libro</h1>
         
-        <form action="SalvarLibro.jsp" id="formularioEdicion" >
+        <form action="ModificarLibro.do" id="formularioEdicion" >
             <fieldset>
                 <legend>Formulario alta libro</legend>
                 <p>
@@ -49,7 +50,7 @@
                     <select name="categoria">
                         <%
                             List<String> listaDeCategorias=null;
-                            listaDeCategorias = libroHelper.buscarTodasLasCategorias();
+                            listaDeCategorias = (List<String>) request.getAttribute("listaDeCategorias");
                                 for (String categoria:listaDeCategorias) {
                                     if(libro.getCategoria().equals(categoria)){%>
                                         <option value="<%=categoria%>" selected="selected"><%=categoria%></option>

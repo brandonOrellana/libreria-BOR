@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
 <title>Lista de Libros</title>
 </head>
 <body>
-    <form name="filtroCategoria">
+    <form name="filtroCategoria" action="filtrar.do">
         <select name="categoria">
                 <option value="seleccionar">seleccionar</option>
                 <%
@@ -48,11 +48,11 @@ pageEncoding="UTF-8"%>
                     <%=libro.getIsbn()%>
                     <%=libro.getTitulo()%>
                     <%=libro.getCategoria()%>
-                    <a href="BorrarLibro.jsp?isbn=<%=libro.getIsbn()%>">Borrar</a>
-                    <a href="FormularioEditarLibro.jsp?isbn=<%=libro.getIsbn()%>">Editar</a>
+                    <a href="BorrarLibro.do?isbn=<%=libro.getIsbn()%>">Borrar</a>
+                    <a href="FormularioEditarLibro.do?isbn=<%=libro.getIsbn()%>">Editar</a>
                 <br/>
 <% }
 %>
     
-    <a href="FormularioInsertarLibro.jsp">Insertar Libro</a>
+    <a href="FormularioInsertarLibro.do">Insertar Libro</a>
     </body></html>

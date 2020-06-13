@@ -20,9 +20,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-    <legend>Formulario alta libro</legend>
-    <form action="InsertarLibro.jsp" onsubmit="return validacion();">
+    
+        <form id="formularioInsercion" action="InsertarLibro.do" onsubmit="return validacion();">
             <fieldset>
+                <legend>Formulario alta libro</legend>
                 <p>
                     <label for="isbn">ISNB:</label>
                     <input id="isbn" type="text" name="isbn">
@@ -39,9 +40,13 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                     <select name ="categoria">
                         <%
                             
-                          List<String> listaDeCategorias=null;
-                          LibroRepository libro = new LibroRepository();
-                          listaDeCategorias = libro.buscarTodasLasCategorias();
+                          //List<String> listaDeCategorias=null;
+                          //LibroRepository libro = new LibroRepository();
+                          //listaDeCategorias = libro.buscarTodasLasCategorias();
+                          List<String> listaDeCategorias = null;
+                        listaDeCategorias = (List<String>) request.getAttribute("listaDeCategorias");
+                        
+                         // List<String> listaDeCategorias =(List<String>) request.getAttribute("listaDeCategorias");
                           for(String categoria:listaDeCategorias){%>
                           <option value="<%=categoria%>"><%=categoria%></option>
                           <%}%>
