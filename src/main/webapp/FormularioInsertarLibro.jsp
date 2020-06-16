@@ -4,6 +4,7 @@
     Author     : Brandon
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="com.javaproyect.connectors.repositories.jdbc.LibroRepository"%>
@@ -38,18 +39,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                     <label for="categoria">Categoria</label>
                     
                     <select name ="categoria">
-                        <%
-                            
-                          //List<String> listaDeCategorias=null;
-                          //LibroRepository libro = new LibroRepository();
-                          //listaDeCategorias = libro.buscarTodasLasCategorias();
-                          List<String> listaDeCategorias = null;
-                        listaDeCategorias = (List<String>) request.getAttribute("listaDeCategorias");
-                        
-                         // List<String> listaDeCategorias =(List<String>) request.getAttribute("listaDeCategorias");
-                          for(String categoria:listaDeCategorias){%>
-                          <option value="<%=categoria%>"><%=categoria%></option>
-                          <%}%>
+                        <c:forEach var = "categoria" items="${listaDeCategorias}">
+                            <option value="${categoria}">${categoria}</option>
+                        </c:forEach>
                     </select>
                 </p>
                     

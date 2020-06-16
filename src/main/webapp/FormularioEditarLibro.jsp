@@ -4,6 +4,7 @@
     Author     : Brandon
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.javaproyect.connectors.repositories.jdbc.LibroRepository"%>
@@ -37,28 +38,20 @@
                 <legend>Formulario alta libro</legend>
                 <p>
                     <label for="isbn">ISBN:</label>
-                    <input type="text" id="isbn" name="isbn" value="<%=libro.getIsbn()%>" readonly/>
+                    <input type="text" id="isbn" name="isbn" value="${libro.isbn}" readonly/>
                 </p>
                 
                 <p>
                     <label for="titulo">Titulo</label>
-                    <input type="text" id="titulo" name="titulo" value="<%=libro.getTitulo()%>"/>
+                    <input type="text" id="titulo" name="titulo" value="${libro.titulo}"/>
                 </p>
                 
                 <p>
                     <label for="categoria">Categoria</label>
                     <select name="categoria">
-                        <%
-                            List<String> listaDeCategorias=null;
-                            listaDeCategorias = (List<String>) request.getAttribute("listaDeCategorias");
-                                for (String categoria:listaDeCategorias) {
-                                    if(libro.getCategoria().equals(categoria)){%>
-                                        <option value="<%=categoria%>" selected="selected"><%=categoria%></option>
-                                    <%}else{%>
-                                        <option value="<%=categoria%>"><%=categoria%></option>
-                                    <%}
-                                }
-                            %>
+                        <c:forEach var="categoria" items="${listaDeCategorias}">
+                            <option value="${categoria}">${categoria}</option>
+                        </c:forEach>
                     </select>
                     <br/>
                 </p>

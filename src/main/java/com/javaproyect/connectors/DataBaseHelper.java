@@ -27,7 +27,7 @@ public class DataBaseHelper<T> {
     
     private Logger logger = LogManager.getLogger(DataBaseHelper.class);
     
-    public int modificarRgistro(String consultaSQL){
+    public int modificarRegistro(String consultaSQL){
         Connection conexion = null;
         Statement sentencia = null;
         int filasAfectadas = 0;

@@ -69,7 +69,7 @@ public class LibroRepository implements I_LibroRepository{
         String consultaSQL = "insert into Libros(isbn,titulo,categoria) values";
         consultaSQL += "('" + this.isbn + "','" + this.titulo + "','" + this.categoria + "')";
         DataBaseHelper helper = new DataBaseHelper();
-        helper.modificarRgistro(consultaSQL);
+        helper.modificarRegistro(consultaSQL);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class LibroRepository implements I_LibroRepository{
     public void borrar() {
         String consultaSQL = "delete from Libros where isbn='"+ this.isbn+"'";
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
-        helper.modificarRgistro(consultaSQL);
+        helper.modificarRegistro(consultaSQL);
     }
     
     public LibroRepository buscarPorClave(String isbn){
@@ -96,7 +96,7 @@ public class LibroRepository implements I_LibroRepository{
     public void salvar(){
         String consultaSQL = "update  Libros  set titulo='" + this.titulo+ "', categoria='" + categoria + "' where isbn='" + isbn + "'";
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
-        helper.modificarRgistro(consultaSQL);
+        helper.modificarRegistro(consultaSQL);
     }
     
     public List<LibroRepository> buscarPorCategoria(String categoria){
