@@ -54,6 +54,10 @@ public class LibroRepository implements I_LibroRepository{
         this.titulo = titulo;
         this.categoria = categoria;
     }
+
+    public LibroRepository(String isbn) {
+        this.isbn = isbn;
+    }
     
 
     @Override
@@ -81,7 +85,7 @@ public class LibroRepository implements I_LibroRepository{
     }
     
     public void borrar() {
-        String consultaSQL = "delete from Libros where isbn='"+ this.isbn+"'";
+        String consultaSQL ="delete from Libros where isbn='" + this.isbn+ "'";
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
         helper.modificarRegistro(consultaSQL);
     }

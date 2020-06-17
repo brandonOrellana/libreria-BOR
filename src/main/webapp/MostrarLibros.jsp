@@ -11,7 +11,7 @@
 <title>Lista de Libros</title>
 </head>
 <body>
-    <form name="filtroCategoria" action="filtrar.do">
+    <form name="filtroCategoria" action="FiltrarLibrosPorCategoria.do">
         <select name="categoria">
                 <option value="seleccionar">seleccionar</option>
                 <c:forEach var="categoria" items="${listaDeCategorias}">
@@ -25,7 +25,7 @@
         ${libro.isbn}
         ${libro.titulo}
         ${libro.categoria}
-            <a href="BorrarLibro.do?isbn=${libro.categoria}">Borrar</a>
+            <a href="BorrarLibro.do?isbn=${libro.isbn}">Borrar</a>
             <a href="FormularioEditarLibro.do?isbn=${libro.isbn}">Editar</a>
         <br/>
     </c:forEach>
