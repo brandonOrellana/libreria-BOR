@@ -12,14 +12,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 /**
  *
  * @author Brandon
  */
+@Entity
+@Table(name = "libros")
 public class LibroRepository implements I_LibroRepository{
+    
+    @Id
+    @Column(name = "Isbn")
     private String isbn;
+    
+    @Column(name = "Titulo")
     private String titulo;
+    
+    @Column(name = "Categoria")
     private String categoria;
 
     public String getIsbn() {
@@ -58,9 +75,21 @@ public class LibroRepository implements I_LibroRepository{
     public LibroRepository(String isbn) {
         this.isbn = isbn;
     }
+
+    @Override
+    public int hashCode() {
+        return isbn.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        String isbnLibro = ((LibroRepository)o).getIsbn();
+        return isbnLibro.equals(isbn);
+    }
     
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<String> buscarTodasLasCategorias() {
         String consultaSQL = "select distinct(categoria) from Libros";
         DataBaseHelper helper = new DataBaseHelper<String>();
@@ -77,6 +106,7 @@ public class LibroRepository implements I_LibroRepository{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<LibroRepository> buscarTodos() {
         String consultaSQL = "select isbn,titulo,categoria from Libros";
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<LibroRepository>();
@@ -89,7 +119,7 @@ public class LibroRepository implements I_LibroRepository{
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
         helper.modificarRegistro(consultaSQL);
     }
-    
+    @SuppressWarnings("unchecked")
     public LibroRepository buscarPorClave(String isbn){
         String consultaSQL = "select isbn,titulo,categoria from Libros where isbn='"+ isbn+"'";
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
@@ -102,7 +132,7 @@ public class LibroRepository implements I_LibroRepository{
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
         helper.modificarRegistro(consultaSQL);
     }
-    
+    @SuppressWarnings("unchecked")
     public List<LibroRepository> buscarPorCategoria(String categoria){
         String consultaSQL = "select isbn,titulo,categoria from Libros where categoria='"+ categoria+"'";
         DataBaseHelper<LibroRepository> helper = new DataBaseHelper<>();
